@@ -18,32 +18,34 @@
 \renewcommand{\headrulewidth}{0pt}
 
 \usepackage{fontspec}
-\setmainfont{equity}[
-  % Files
-  Path      = \string~/s/fonts/equity/ ,
-  Extension = .otf ,
-  % Fonts
-  UprightFont     = Equity Text A Regular ,
-  UprightFeatures = { SmallCapsFont = Equity Caps A Regular } ,
-  BoldFont        = Equity Text A Bold ,
-  BoldFeatures    = { SmallCapsFont = Equity Caps A Bold } ,
-  ItalicFont      = Equity Text A Italic ,
-  BoldItalicFont  = Equity Text A Bold Italic ,
-  % Features
-  Numbers = OldStyle ]
+\setmainfont{Cardo}
+\newfontfamily{\lettrinefont}{Cardo}
+% \setmainfont{equity}[
+%   % Files
+%   Path      = \string~/s/fonts/equity/ ,
+%   Extension = .otf ,
+%   % Fonts
+%   UprightFont     = Equity Text A Regular ,
+%   UprightFeatures = { SmallCapsFont = Equity Caps A Regular } ,
+%   BoldFont        = Equity Text A Bold ,
+%   BoldFeatures    = { SmallCapsFont = Equity Caps A Bold } ,
+%   ItalicFont      = Equity Text A Italic ,
+%   BoldItalicFont  = Equity Text A Bold Italic ,
+%   % Features
+%   Numbers = OldStyle ]
 
-% old-style numbers don't look great as drop-caps
-\newfontfamily{\lettrinefont}{lettrine}[
-  % Files
-  Path      = \string~/s/fonts/equity/ ,
-  Extension = .otf ,
-  % Fonts
-  UprightFont     = Equity Text A Regular ,
-  UprightFeatures = { SmallCapsFont = Equity Caps A Regular } ,
-  BoldFont        = Equity Text A Bold ,
-  BoldFeatures    = { SmallCapsFont = Equity Caps A Bold } ,
-  ItalicFont      = Equity Text A Italic ,
-  BoldItalicFont  = Equity Text A Bold Italic]
+% % old-style numbers don't look great as drop-caps
+% \newfontfamily{\lettrinefont}{lettrine}[
+%   % Files
+%   Path      = \string~/s/fonts/equity/ ,
+%   Extension = .otf ,
+%   % Fonts
+%   UprightFont     = Equity Text A Regular ,
+%   UprightFeatures = { SmallCapsFont = Equity Caps A Regular } ,
+%   BoldFont        = Equity Text A Bold ,
+%   BoldFeatures    = { SmallCapsFont = Equity Caps A Bold } ,
+%   ItalicFont      = Equity Text A Italic ,
+%   BoldItalicFont  = Equity Text A Bold Italic]
 
 \newcommand{\framesize}{\textwidth}
 \setlength{\headwidth}{\textwidth}
@@ -105,7 +107,7 @@
   {\par\vspace{\biblechapskip}\setbeforesecskip{0ex}\setbeforesubsecskip{0ex}}
 \newcommand{\@showversenum}{%
   \ifnum\c@bibleverse=1\else{\color{\versenumcolor}\textbf{\thebibleverse}~}\fi%
-  \markboth{{\scshape\currbook} \thebiblechapter:\thebibleverse}{{\scshape\currbook} \thebiblechapter:\thebibleverse}%
+  \markboth{{\scshape\currbook} \thebiblechapter, \thebibleverse}{{\scshape\currbook} \thebiblechapter, \thebibleverse}%
   \ignorespaces}
 \renewcommand{\verse}{\stepcounter{bibleverse}\@showversenum}
 \newcommand{\verseWithHeading}[1]{%
@@ -165,9 +167,11 @@
 \newcommand{\LORD}{\textsc{Lord}\xspace}
 \newcommand{\LORDs}{\textsc{Lord's}\xspace}
 
-\title{The Holy Bible}
+\addto\captionsenglish{\renewcommand\contentsname{Index}}
+
+\title{Nova Vulgara}
 \date{}
-\author{}
+\author{Bibliorum Sacrorum Editio}
 
 \begin{document}
 \frontmatter
@@ -196,7 +200,7 @@
   \node[anchor=north,rotate=-90] at (vecbox.east){%
     \pgfornament[width=0.6*\framesize,symmetry=h]{85}};
   \node[inner sep=6pt, color=black] (text) at (vecbox.center){%
-    \HUGE \textsc{The Holy Bible}};
+    \HUGE \textsc{NOVA VULGATA}};
   \node[anchor=north, color=Goldenrod] (base) at (text.south){%
     \pgfornament[width=0.5*\framesize]{71}};
   \node[anchor=south, color=Goldenrod] at (text.north){%
@@ -209,9 +213,9 @@
 \tableofcontents
 
 \mainmatter
-\part*{The Old Testament}
+\part*{Vetus Testamentum}
 
-\startornaments
+%\startornaments
 \input{old_testament/genesis.tex}\flushcolsend
 \input{old_testament/exodus.tex}\flushcolsend
 \input{old_testament/leviticus.tex}\flushcolsend
