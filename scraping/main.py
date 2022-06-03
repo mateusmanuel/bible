@@ -1,3 +1,4 @@
+from termios import VSTART
 import requests
 import re
 from bs4 import BeautifulSoup
@@ -9,13 +10,13 @@ def make_testament(testament):
     for li in main_soup.find('ul').find_all('li'):
         a = li.find('a')
         link = a['href']
-        title = a.text
+        title = (a.text).lstrip()
 
-        if "Psalm" or "Esther" in title:
-            continue
+        # if "Psalm" or "Esther" in title:
+        #     continue
 
         make_book(link, title, testament)
-        print("\\input{"+testament+"\/"+title+".tex}/\flushcolsend")
+        print("\\input{"+testament+"/"+title+".tex}\\flushcolsend")
         
 
 def make_book(link, title, testament):
@@ -27,19 +28,26 @@ def make_book(link, title, testament):
     with open('/home/mateus/Programming/bible/'+testament+'/'+title+'.tex', mode='w') as f:
         f.write("\\biblebook{"+title+"}\n")
         for p in body.find_all('p'):
-            p_str = str(p)
-            if 'name' in p_str:
-                cap = (p_str.split('<br/>',1)[1]).replace('</p>','')
-                verses = cap.split('<br/>')
+            # p_str = str(p)
+            if 'name' in str(p):
+                p.b.decompose()
+                p_str = p.text
+                # cap = p_str.split(' ',2)[2] # rm cap number
+                # verses = p_str.split('<br/>')
 
-                f.write("\\begin{biblechapter}\n")
+                f.write("\n\\begin{biblechapter}")
 
-                for v in verses:
-                    vx = v.replace("<font size=\"3\">","").replace(" </font>","")
-                    vx = re.sub(r'\d+', '@', vx).replace("@","\\verse")
-                    f.write(vx+"\n")
+                # for v in verses:
+                    # vx = v.replace("<font size=\"3\">","").replace(" </font>","")
+                vx = re.sub(r'\d+ ', '\n@ ', p_str)
+                vx = re.sub(r'(\d+)a ', '\n@ a ', vx)
+                vx = vx.replace("@","\\verse")
+                vx = vx.replace("“ ","“")
+                vx = vx.replace(" ”","\"")
 
-        f.write("\\end{biblechapter}\n")
+                f.write(vx+"\n")
+
+                f.write("\\end{biblechapter}\n")
         f.close()
 
 

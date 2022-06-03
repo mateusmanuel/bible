@@ -18,6 +18,7 @@
 \input{vetus-testamentum/Liber Iudith.tex}\flushcolsend
 \input{vetus-testamentum/Liber Esther.tex}\flushcolsend
 \input{vetus-testamentum/Liber Iob.tex}\flushcolsend
+\input{vetus-testamentum/Liber Psalmorum.tex}\flushcolsend
 \input{vetus-testamentum/Liber Proverbiorum.tex}\flushcolsend
 \input{vetus-testamentum/Liber Ecclesiastes.tex}\flushcolsend
 \input{vetus-testamentum/Canticum Canticorum.tex}\flushcolsend
